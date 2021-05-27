@@ -8,7 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="runner" />
         <module name="simpelwebapp" />
+        <module name="jee" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="runner" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
