@@ -1,9 +1,6 @@
 package org.example;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,22 @@ public class ContactsResource {
 
     @GET
     @Produces(APPLICATION_JSON)
-    public List<Contact> get(){
-             return this.contacts;
+    public List<Contact> get() {
+        return this.contacts;
+    }
+
+    @GET
+    @Produces(APPLICATION_JSON)
+    public List<Contact> getQ(@QueryParam()){
+
+    }
+
+    @POST
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
+    public Contact post(Contact contact) {
+        this.contacts.add(contact);
+        System.out.println(contacts);
+        return contact;
     }
 }

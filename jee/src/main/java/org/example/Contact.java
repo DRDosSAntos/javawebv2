@@ -17,9 +17,24 @@ public class Contact {
         return id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Contact(String name, int age, long id) {
         this.name = name;
         this.age = age;
         this.id = id;
+    }
+
+    public Contact() {
     }
 }
