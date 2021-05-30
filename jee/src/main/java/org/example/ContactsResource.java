@@ -1,14 +1,19 @@
 package org.example;
+import org.slf4j.Logger;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/contacts")
 public class ContactsResource {
+
+    @Inject
+    private Logger log;
 
     private final List<Contact> contacts = new ArrayList<>(List.of(
             new Contact("Bram", 41, 1),
@@ -17,16 +22,15 @@ public class ContactsResource {
             new Contact("Debby", 33, 4)
     ));
 
-    @GET
-    @Produces(APPLICATION_JSON)
-    public List<Contact> get() {
-        return this.contacts;
-    }
 
     @GET
     @Produces(APPLICATION_JSON)
-    public List<Contact> getQ(@QueryParam()){
-
+    public List<Contact> getQ(@QueryParam("name") String n) {
+        return n == null ?
+                this.contacts :
+                contacts.stream()
+                        .filter(c -> c.getName().contains(n))
+                        .collect(toList());
     }
 
     @POST
