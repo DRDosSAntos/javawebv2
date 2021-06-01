@@ -1,5 +1,9 @@
 package org.example;
 
+import javax.json.bind.annotation.JsonbTypeAdapter;
+import javax.swing.text.Style;
+import javax.ws.rs.core.Link;
+
 public class Contact {
     private String name;
     private int age;

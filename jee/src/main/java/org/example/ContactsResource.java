@@ -19,13 +19,17 @@ public class ContactsResource {
             new Contact("Bram", 41, 1),
             new Contact("David", 27, 2),
             new Contact("Rutger", 33, 3),
-            new Contact("Debby", 33, 4)
+            new Contact("Debby", 33, 4),
+            new Contact("Bart", 28, 5)
     ));
 
 
     @GET
     @Produces(APPLICATION_JSON)
     public List<Contact> getQ(@QueryParam("name") String n) {
+        if(n ==null){
+            log.debug("No search parameter provided, displaying all entries");
+        } else {log.debug("Provided search parameter '{}' , displaying requested entries", n);}
         return n == null ?
                 this.contacts :
                 contacts.stream()
